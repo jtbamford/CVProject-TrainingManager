@@ -1,5 +1,7 @@
 package com.qa.CVProjectTrainingManager.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,7 @@ public class Endpoint {
 	private TrainingManagerService service;
 	
 	@GetMapping("${getall_endpoint}")
-	public Iterable<CV> getAllCVs() {
+	public List<CV> getAllCVs() {
 		return service.getAllCVs();
 	}
 	

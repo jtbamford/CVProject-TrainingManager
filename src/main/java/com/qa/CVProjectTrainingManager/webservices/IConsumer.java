@@ -4,6 +4,6 @@ import com.qa.CVProjectTrainingManager.service.CV;
 
 public interface IConsumer {
 
-	Iterable<CV> recieveCVs(Iterable<CV> CVs);
+	List<CV> recieveCVs(Iterable<CV> CVs);
 
 }

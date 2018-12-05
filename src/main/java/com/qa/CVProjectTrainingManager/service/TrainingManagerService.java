@@ -1,5 +1,7 @@
 package com.qa.CVProjectTrainingManager.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class TrainingManagerService implements ITrainingManagerService {
 	@Autowired
 	private IConsumer consumer;
 
-	public Iterable<CV> getAllCVs() {
+	public List<CV> getAllCVs() {
 		producer.askForCVs();
 		return Consumer.getListOfCVs();
 	}

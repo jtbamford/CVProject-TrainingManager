@@ -1,7 +1,9 @@
 package com.qa.CVProjectTrainingManager.service;
 
+import java.util.List;
+
 public interface ITrainingManagerService {
 	
-	Iterable<CV> getAllCVs();
+	List<CV> getAllCVs();
 
 }
