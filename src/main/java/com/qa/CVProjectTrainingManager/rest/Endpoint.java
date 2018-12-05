@@ -17,7 +17,7 @@ public class Endpoint {
 	private TrainingManagerService service;
 	
 	@GetMapping("${getall_endpoint}")
-	public Iterable<CV> getAllAccounts() {
+	public Iterable<CV> getAllCVs() {
 		return service.getAllCVs();
 	}
 	

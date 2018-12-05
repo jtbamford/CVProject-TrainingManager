@@ -2,8 +2,8 @@ package com.qa.CVProjectTrainingManager.webservices;
 
 import com.qa.CVProjectTrainingManager.service.CV;
 
-public interface IConsumer {
+public interface IProducer {
 
-	Iterable<CV> recieveCVs(Iterable<CV> CVs);
+	String askForCVs();
 
 }
