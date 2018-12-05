@@ -14,7 +14,7 @@ public class Consumer implements IConsumer {
 	private List<CV> listOfCVs;
 	
 	@JmsListener(destination = "TrainingManagerCVQueue", containerFactory = "myFactory")
-	public Iterable<CV> recieveCVs(Iterable<CV> CVs) {
+	public List<CV> recieveCVs(Iterable<CV> CVs) {
 		for(CV cv: CVs) {
 			listOfCVs.add(cv);
 		}
