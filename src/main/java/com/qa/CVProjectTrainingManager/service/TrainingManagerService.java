@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.CVProjectTrainingManager.persistence.domain.CV;
-import com.qa.CVProjectTrainingManager.webservices.Consumer;
 import com.qa.CVProjectTrainingManager.webservices.IConsumer;
 import com.qa.CVProjectTrainingManager.webservices.IProducer;
 
@@ -21,7 +20,7 @@ public class TrainingManagerService implements ITrainingManagerService {
 
 	public List<CV> getAllCVs() {
 		producer.askForCVs();
-		return (List<CV>) Consumer.getListOfCVs();
+		return (List<CV>) consumer.getListOfCVs();
 	}
 
 	public void setProducer(IProducer producer) {

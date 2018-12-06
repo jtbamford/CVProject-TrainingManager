@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.CVProjectTrainingManager.persistence.domain.CV;
-import com.qa.CVProjectTrainingManager.service.TrainingManagerService;
+import com.qa.CVProjectTrainingManager.service.ITrainingManagerService;
 
 @RequestMapping("${base_endpoint}")
 @RestController
@@ -17,18 +17,18 @@ import com.qa.CVProjectTrainingManager.service.TrainingManagerService;
 public class Endpoint {
 	
 	@Autowired
-	private TrainingManagerService service;
+	private ITrainingManagerService service;
 	
 	@GetMapping("${getall_endpoint}")
 	public List<CV> getAllCVs() {
 		return service.getAllCVs();
 	}
 	
-	public void setService(TrainingManagerService service) {
+	public void setService(ITrainingManagerService service) {
 		this.service = service;
 	}
 
-	public TrainingManagerService getService() {
+	public ITrainingManagerService getService() {
 		return service;
 	}
 

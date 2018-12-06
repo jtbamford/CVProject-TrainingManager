@@ -13,7 +13,7 @@ import com.qa.CVProjectTrainingManager.persistence.domain.CV;
 @CrossOrigin
 public class Consumer implements IConsumer {
 	
-	private static List<CV> listOfCVs;
+	private List<CV> listOfCVs;
 	
 	@JmsListener(destination = "TrainingManagerCVQueue", containerFactory = "myFactory")
 	public List<CV> recieveCVs(Iterable<CV> CVs) {
@@ -23,13 +23,9 @@ public class Consumer implements IConsumer {
 		return listOfCVs;
 	}
 
-	public static List<CV> getListOfCVs() {
+	public List<CV> getListOfCVs() {
 		return listOfCVs;
 	}
 
-	public void setListOfCVs(List<CV> listOfCVs) {
-		this.listOfCVs = listOfCVs;
-	}
-	
 
 }
