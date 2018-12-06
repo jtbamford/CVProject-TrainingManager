@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.CVProjectTrainingManager.persistence.domain.CV;
 import com.qa.CVProjectTrainingManager.service.TrainingManagerService;
 
 @RequestMapping("${base_endpoint}")

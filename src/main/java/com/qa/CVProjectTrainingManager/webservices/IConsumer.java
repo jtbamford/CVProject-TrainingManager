@@ -2,7 +2,7 @@ package com.qa.CVProjectTrainingManager.webservices;
 
 import java.util.List;
 
-import com.qa.CVProjectTrainingManager.service.CV;
+import com.qa.CVProjectTrainingManager.persistence.domain.CV;
 
 public interface IConsumer {
 
