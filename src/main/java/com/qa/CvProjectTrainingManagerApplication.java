@@ -1,4 +1,4 @@
-package com.qa.CVProjectTrainingManager;
+package com.qa;
 
 import javax.jms.ConnectionFactory;
 

@@ -1,4 +1,4 @@
-package com.qa.CVProjectTrainingManager.persistence.domain;
+package com.qa.persistence.domain;
 
 import org.springframework.web.multipart.MultipartFile;
 

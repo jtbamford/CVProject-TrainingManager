@@ -1,4 +1,4 @@
-package com.qa.CVProjectTrainingManager.persistence.domain;
+package com.qa.persistence.domain;
 
 import java.io.Serializable;
 

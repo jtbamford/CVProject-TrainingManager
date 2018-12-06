@@ -1,8 +1,8 @@
-package com.qa.CVProjectTrainingManager.webservices;
+package com.qa.webservices;
 
 import java.util.List;
 
-import com.qa.CVProjectTrainingManager.persistence.domain.CV;
+import com.qa.persistence.domain.CV;
 
 public interface IConsumer {
 

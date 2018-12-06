@@ -1,11 +1,11 @@
-package com.qa.CVProjectTrainingManager.webservices;
+package com.qa.webservices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.CVProjectTrainingManager.constants.Constants;
+import com.qa.constants.Constants;
 
 @RestController
 @CrossOrigin

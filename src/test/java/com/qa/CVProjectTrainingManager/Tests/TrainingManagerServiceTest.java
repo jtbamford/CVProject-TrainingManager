@@ -12,11 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.qa.CVProjectTrainingManager.constants.Constants;
-import com.qa.CVProjectTrainingManager.persistence.domain.CV;
-import com.qa.CVProjectTrainingManager.service.TrainingManagerService;
-import com.qa.CVProjectTrainingManager.webservices.Consumer;
-import com.qa.CVProjectTrainingManager.webservices.Producer;
+import com.qa.constants.Constants;
+import com.qa.persistence.domain.CV;
+import com.qa.service.TrainingManagerService;
+import com.qa.webservices.Consumer;
+import com.qa.webservices.Producer;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TrainingManagerServiceTest {

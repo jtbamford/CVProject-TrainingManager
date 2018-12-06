@@ -1,8 +1,8 @@
-package com.qa.CVProjectTrainingManager.constants;
+package com.qa.constants;
 
 import java.util.List;
 
-import com.qa.CVProjectTrainingManager.persistence.domain.CV;
+import com.qa.persistence.domain.CV;
 
 public class Constants {
 	

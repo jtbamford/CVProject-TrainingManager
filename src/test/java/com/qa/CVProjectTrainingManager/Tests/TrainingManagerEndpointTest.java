@@ -12,9 +12,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.qa.CVProjectTrainingManager.persistence.domain.CV;
-import com.qa.CVProjectTrainingManager.rest.Endpoint;
-import com.qa.CVProjectTrainingManager.service.TrainingManagerService;
+import com.qa.persistence.domain.CV;
+import com.qa.persistence.domain.TrainingManager;
+import com.qa.rest.Endpoint;
+import com.qa.service.TrainingManagerService;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -38,6 +39,13 @@ public class TrainingManagerEndpointTest {
 		listCV.add(cv);
 		Mockito.when(service.getAllCVs()).thenReturn(listCV);
 		Assert.assertEquals(listCV, endpoint.getAllCVs());
+	}
+	
+	@Test
+	public void testCreateTrainingManager() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		Mockito.when(service.createTrainingManager(mockTrainingManager)).thenReturn(mockTrainingManager);
+		Assert.assertEquals(mockTrainingManager, endpoint.createTrainingManager(mockTrainingManager));
 	}
 
 }

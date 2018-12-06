@@ -1,4 +1,4 @@
-package com.qa.CVProjectTrainingManager.webservices;
+package com.qa.webservices;
 
 
 public interface IProducer {

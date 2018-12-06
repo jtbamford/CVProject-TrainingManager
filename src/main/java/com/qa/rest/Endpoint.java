@@ -1,15 +1,17 @@
-package com.qa.CVProjectTrainingManager.rest;
+package com.qa.rest;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.CVProjectTrainingManager.persistence.domain.CV;
-import com.qa.CVProjectTrainingManager.service.ITrainingManagerService;
+import com.qa.persistence.domain.CV;
+import com.qa.persistence.domain.TrainingManager;
+import com.qa.service.ITrainingManagerService;
 
 @RequestMapping("${base_endpoint}")
 @RestController
@@ -23,6 +25,12 @@ public class Endpoint {
 	public List<CV> getAllCVs() {
 		return service.getAllCVs();
 	}
+	
+	@PostMapping("${create_endpoint}")
+	public TrainingManager createTrainingManager(TrainingManager trainingManager) {
+		return service.createTrainingManager(trainingManager);
+	}
+	
 	
 	public void setService(ITrainingManagerService service) {
 		this.service = service;

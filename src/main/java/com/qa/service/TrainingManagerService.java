@@ -1,13 +1,14 @@
-package com.qa.CVProjectTrainingManager.service;
+package com.qa.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.CVProjectTrainingManager.persistence.domain.CV;
-import com.qa.CVProjectTrainingManager.webservices.IConsumer;
-import com.qa.CVProjectTrainingManager.webservices.IProducer;
+import com.qa.persistence.domain.CV;
+import com.qa.persistence.domain.TrainingManager;
+import com.qa.webservices.IConsumer;
+import com.qa.webservices.IProducer;
 
 @Service
 public class TrainingManagerService implements ITrainingManagerService {
@@ -21,6 +22,11 @@ public class TrainingManagerService implements ITrainingManagerService {
 	public List<CV> getAllCVs() {
 		producer.askForCVs();
 		return (List<CV>) consumer.getListOfCVs();
+	}
+	
+	public TrainingManager createTrainingManager(TrainingManager trainingManager) {
+		// send to mongo
+		return trainingManager;
 	}
 
 	public void setProducer(IProducer producer) {
