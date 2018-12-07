@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.qa.constants.Constants;
 import com.qa.persistence.domain.CV;
 import com.qa.persistence.domain.TrainingManager;
 import com.qa.rest.Endpoint;
@@ -53,6 +54,15 @@ public class TrainingManagerEndpointTest {
 		TrainingManager mockTrainingManager = new TrainingManager();
 		Mockito.when(service.findTrainingManagerByUsername(mockTrainingManager.getUsername())).thenReturn(mockTrainingManager);
 		Assert.assertEquals(mockTrainingManager, endpoint.findTrainingManagerByUsername(mockTrainingManager.getUsername()));
+	}
+	
+	@Test
+	public void testGetAllTrainingManagers() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		listTrainingManagers.add(mockTrainingManager);
+		Mockito.when(service.getAllTrainingManagers()).thenReturn(listTrainingManagers);
+		Assert.assertEquals(listTrainingManagers, endpoint.getAllTrainingManagers());
 	}
 
 }

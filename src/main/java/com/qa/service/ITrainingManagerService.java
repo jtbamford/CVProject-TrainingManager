@@ -13,5 +13,7 @@ public interface ITrainingManagerService {
 	TrainingManager createTrainingManager(TrainingManager trainingManager);
 	
 	TrainingManager findTrainingManagerByUsername(String username);
+	
+	List<TrainingManager> getAllTrainingManagers();
 
 }

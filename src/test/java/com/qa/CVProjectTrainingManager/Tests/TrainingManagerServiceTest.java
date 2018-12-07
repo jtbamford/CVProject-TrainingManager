@@ -64,6 +64,16 @@ public class TrainingManagerServiceTest {
 		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
 		Assert.assertEquals(mockTrainingManager, service.findTrainingManagerByUsername(mockTrainingManager.getUsername()));
 	}
+	
+	@Test
+	public void testGetAllTrainingManagers() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		listTrainingManagers.add(mockTrainingManager);
+		Mockito.when(producer.askForTrainingManagers()).thenReturn(Constants.QUEUE_MESSAGE);
+		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
+		Assert.assertEquals(listTrainingManagers, service.getAllTrainingManagers());
+	}
 
 
 }

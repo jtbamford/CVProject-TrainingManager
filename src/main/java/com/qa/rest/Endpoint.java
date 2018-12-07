@@ -22,7 +22,7 @@ public class Endpoint {
 	@Autowired
 	private ITrainingManagerService service;
 	
-	@GetMapping("${getall_endpoint}")
+	@GetMapping("${getall_cvs_endpoint}")
 	public List<CV> getAllCVs() {
 		return service.getAllCVs();
 	}
@@ -32,10 +32,16 @@ public class Endpoint {
 		return service.createTrainingManager(trainingManager);
 	}
 	
-	@GetMapping("${get_training_manager_endpoint}")
+	@GetMapping("${get_manager_endpoint}")
 	public TrainingManager findTrainingManagerByUsername(@RequestBody String username) {
 		return service.findTrainingManagerByUsername(username);
 	}
+	
+	@GetMapping("${getall_managers_endpoint}")
+	public List<TrainingManager> getAllTrainingManagers() {
+		return service.getAllTrainingManagers();
+	}
+
 
 	
 	public void setService(ITrainingManagerService service) {
@@ -45,6 +51,7 @@ public class Endpoint {
 	public ITrainingManagerService getService() {
 		return service;
 	}
+
 
 
 }
