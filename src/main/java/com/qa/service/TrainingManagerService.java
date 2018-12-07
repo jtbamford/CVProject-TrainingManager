@@ -25,6 +25,7 @@ public class TrainingManagerService implements ITrainingManagerService {
 	}
 	
 	public TrainingManager createTrainingManager(TrainingManager trainingManager) {
+		// add method giving error if username not unique
 		producer.createTrainingManager(trainingManager);
 		return trainingManager;
 	}
@@ -39,6 +40,17 @@ public class TrainingManagerService implements ITrainingManagerService {
 		producer.askForTrainingManagers();
 		return consumer.getListOfTrainingManagers();
 	}
+	
+	public TrainingManager updateTrainingManager(String username, TrainingManager newTrainingManager) {
+		// add method giving error if new username not unique
+		TrainingManager trainingManager = new TrainingManager();
+		trainingManager.setID(findTrainingManagerByUsername(username).getID());		
+		trainingManager.setFirstName(newTrainingManager.getFirstName());
+		trainingManager.setLastName(newTrainingManager.getLastName());
+		trainingManager.setUsername(newTrainingManager.getUsername());
+		producer.sendTrainingManager(trainingManager);
+		return trainingManager;
+	}
 
 	
 	public void setProducer(IProducer producer) {
@@ -48,6 +60,8 @@ public class TrainingManagerService implements ITrainingManagerService {
 	public void setConsumer(IConsumer consumer) {
 		this.consumer = consumer;
 	}
+
+
 
 
 

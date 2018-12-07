@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +44,10 @@ public class Endpoint {
 		return service.getAllTrainingManagers();
 	}
 
-
+	@PutMapping("${update_endpoint}")
+	public TrainingManager updateTrainingManager(@PathVariable String username,@RequestBody TrainingManager newTrainingManager) {
+		return service.updateTrainingManager(username,newTrainingManager);
+	}
 	
 	public void setService(ITrainingManagerService service) {
 		this.service = service;
@@ -51,6 +56,8 @@ public class Endpoint {
 	public ITrainingManagerService getService() {
 		return service;
 	}
+
+
 
 
 

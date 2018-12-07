@@ -64,5 +64,23 @@ public class TrainingManagerEndpointTest {
 		Mockito.when(service.getAllTrainingManagers()).thenReturn(listTrainingManagers);
 		Assert.assertEquals(listTrainingManagers, endpoint.getAllTrainingManagers());
 	}
+	
+	@Test
+	public void testUpdateTrainingManager() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		mockTrainingManager.setUsername("user");
+		mockTrainingManager.setID(1L);
+		TrainingManager newTrainingManager = new TrainingManager();
+		newTrainingManager.setFirstName("1st");
+		newTrainingManager.setLastName("end");
+		newTrainingManager.setUsername("name");
+		newTrainingManager.setID(mockTrainingManager.getID());
+		Mockito.when(service.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager)).thenReturn(newTrainingManager);
+		Assert.assertEquals(newTrainingManager.getFirstName(), endpoint.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getFirstName());
+		Assert.assertEquals(newTrainingManager.getLastName(), endpoint.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getLastName());
+		Assert.assertEquals(newTrainingManager.getUsername(), endpoint.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getUsername());
+		Assert.assertEquals(mockTrainingManager.getID(), endpoint.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getID());
+	}
+
 
 }

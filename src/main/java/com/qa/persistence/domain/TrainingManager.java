@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class TrainingManager implements Serializable {
 	
+	private Long ID;
+	
 	private String username; //email
 
 	private String firstName;
@@ -43,5 +45,13 @@ public class TrainingManager implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Long getID() {
+		return ID;
+	}
+
+	public void setID(Long Id) {
+		ID = Id;
 	}
 }

@@ -15,5 +15,7 @@ public interface ITrainingManagerService {
 	TrainingManager findTrainingManagerByUsername(String username);
 	
 	List<TrainingManager> getAllTrainingManagers();
+	
+	TrainingManager updateTrainingManager(String username, TrainingManager newTrainingManager);
 
 }

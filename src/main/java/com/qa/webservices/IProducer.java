@@ -10,4 +10,6 @@ public interface IProducer {
 
 	String askForTrainingManagers();
 
+	String sendTrainingManager(TrainingManager trainingManager);
+
 }
