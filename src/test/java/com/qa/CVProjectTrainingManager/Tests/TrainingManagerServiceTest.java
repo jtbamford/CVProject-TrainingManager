@@ -99,6 +99,30 @@ public class TrainingManagerServiceTest {
 	}
 	
 	@Test
+	public void testUpdateTrainingManagerUsernameNotUnique() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		TrainingManager sameUsernameTrainingManager = new TrainingManager();
+		mockTrainingManager.setUsername("user");
+		mockTrainingManager.setID(1L);
+		sameUsernameTrainingManager.setUsername("name");
+		sameUsernameTrainingManager.setID(2L);
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		listTrainingManagers.add(mockTrainingManager);
+		listTrainingManagers.add(sameUsernameTrainingManager);
+		TrainingManager newTrainingManager = new TrainingManager();
+		newTrainingManager.setFirstName("1st");
+		newTrainingManager.setLastName("end");
+		newTrainingManager.setUsername("name");
+		Mockito.when(producer.askForTrainingManagers()).thenReturn(Constants.QUEUE_MESSAGE);
+		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
+		Assert.assertEquals(mockTrainingManager.getFirstName(), service.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getFirstName());
+		Assert.assertEquals(mockTrainingManager.getLastName(), service.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getLastName());
+		Assert.assertEquals(mockTrainingManager.getUsername(), service.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getUsername());
+		Assert.assertEquals(mockTrainingManager.getID(), service.updateTrainingManager(mockTrainingManager.getUsername(),newTrainingManager).getID());
+	}
+	
+	
+	@Test
 	public void testCreateTrainingManagerUsernameNotUnique() {
 		TrainingManager newTrainingManager = new TrainingManager();
 		newTrainingManager.setUsername("user");

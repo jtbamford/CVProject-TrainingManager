@@ -55,14 +55,21 @@ public class TrainingManagerService implements ITrainingManagerService {
 	}
 	
 	public TrainingManager updateTrainingManager(String username, TrainingManager newTrainingManager) {
-		// add method giving error if new username not unique
 		TrainingManager trainingManager = new TrainingManager();
+		if(usernameisunique(newTrainingManager) || newTrainingManager.getUsername().equals(username)) {
 		trainingManager.setID(findTrainingManagerByUsername(username).get().getID());		
 		trainingManager.setFirstName(newTrainingManager.getFirstName());
 		trainingManager.setLastName(newTrainingManager.getLastName());
 		trainingManager.setUsername(newTrainingManager.getUsername());
 		producer.sendTrainingManager(trainingManager);
 		return trainingManager;
+		} else  {
+			trainingManager.setID(findTrainingManagerByUsername(username).get().getID());
+			trainingManager.setFirstName(findTrainingManagerByUsername(username).get().getFirstName());
+			trainingManager.setLastName(findTrainingManagerByUsername(username).get().getLastName());
+			trainingManager.setUsername(username);
+			return trainingManager;
+		}
 	}
 
 	
