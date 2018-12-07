@@ -47,5 +47,7 @@ public class TrainingManagerEndpointTest {
 		Mockito.when(service.createTrainingManager(mockTrainingManager)).thenReturn(mockTrainingManager);
 		Assert.assertEquals(mockTrainingManager, endpoint.createTrainingManager(mockTrainingManager));
 	}
+	
+	
 
 }

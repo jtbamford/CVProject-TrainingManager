@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.constants.Constants;
 import com.qa.persistence.domain.CV;
+import com.qa.persistence.domain.TrainingManager;
 import com.qa.service.TrainingManagerService;
 import com.qa.webservices.Consumer;
 import com.qa.webservices.Producer;
@@ -44,6 +45,13 @@ public class TrainingManagerServiceTest {
 		Mockito.when(producer.askForCVs()).thenReturn(Constants.QUEUE_MESSAGE);
 		Mockito.when(consumer.getListOfCVs()).thenReturn(listCV);
 		Assert.assertEquals(listCV, service.getAllCVs());
+	}
+	
+	@Test
+	public void testCreateTrainingManager() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		Mockito.when(producer.createTrainingManager(mockTrainingManager)).thenReturn(Constants.QUEUE_MESSAGE);
+		Assert.assertEquals(mockTrainingManager, service.createTrainingManager(mockTrainingManager));
 	}
 
 

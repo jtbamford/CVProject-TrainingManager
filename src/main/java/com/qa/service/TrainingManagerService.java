@@ -25,7 +25,7 @@ public class TrainingManagerService implements ITrainingManagerService {
 	}
 	
 	public TrainingManager createTrainingManager(TrainingManager trainingManager) {
-		// send to mongo
+		producer.createTrainingManager(trainingManager);
 		return trainingManager;
 	}
 
