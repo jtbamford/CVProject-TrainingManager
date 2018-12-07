@@ -2,6 +2,7 @@ package com.qa.CVProjectTrainingManager.Tests;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,15 +46,15 @@ public class TrainingManagerEndpointTest {
 	@Test
 	public void testCreateTrainingManager() {
 		TrainingManager mockTrainingManager = new TrainingManager();
-		Mockito.when(service.createTrainingManager(mockTrainingManager)).thenReturn(mockTrainingManager);
-		Assert.assertEquals(mockTrainingManager, endpoint.createTrainingManager(mockTrainingManager));
+		Mockito.when(service.createTrainingManager(mockTrainingManager)).thenReturn(Constants.TRAINING_MANAGER);
+		Assert.assertEquals(Constants.TRAINING_MANAGER, endpoint.createTrainingManager(mockTrainingManager));
 	}
 	
 	@Test
 	public void testFindTrainingManager() {
 		TrainingManager mockTrainingManager = new TrainingManager();
-		Mockito.when(service.findTrainingManagerByUsername(mockTrainingManager.getUsername())).thenReturn(mockTrainingManager);
-		Assert.assertEquals(mockTrainingManager, endpoint.findTrainingManagerByUsername(mockTrainingManager.getUsername()));
+		Mockito.when(service.findTrainingManagerByUsername(mockTrainingManager.getUsername())).thenReturn(Optional.of(mockTrainingManager));
+		Assert.assertEquals(Optional.of(mockTrainingManager), endpoint.findTrainingManagerByUsername(mockTrainingManager.getUsername()));
 	}
 	
 	@Test

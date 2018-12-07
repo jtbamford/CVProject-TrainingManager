@@ -1,6 +1,7 @@
 package com.qa.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,12 +31,12 @@ public class Endpoint {
 	}
 	
 	@PostMapping("${create_endpoint}")
-	public TrainingManager createTrainingManager(TrainingManager trainingManager) {
+	public String createTrainingManager(TrainingManager trainingManager) {
 		return service.createTrainingManager(trainingManager);
 	}
 	
 	@GetMapping("${get_manager_endpoint}")
-	public TrainingManager findTrainingManagerByUsername(@RequestBody String username) {
+	public Optional<TrainingManager> findTrainingManagerByUsername(@RequestBody String username) {
 		return service.findTrainingManagerByUsername(username);
 	}
 	

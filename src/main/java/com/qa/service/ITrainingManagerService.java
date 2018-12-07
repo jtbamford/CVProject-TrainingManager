@@ -1,6 +1,7 @@
 package com.qa.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.qa.persistence.domain.CV;
 import com.qa.persistence.domain.TrainingManager;
@@ -10,12 +11,14 @@ public interface ITrainingManagerService {
 	
 	List<CV> getAllCVs();
 
-	TrainingManager createTrainingManager(TrainingManager trainingManager);
+	String createTrainingManager(TrainingManager trainingManager);
 	
-	TrainingManager findTrainingManagerByUsername(String username);
+	Optional<TrainingManager> findTrainingManagerByUsername(String username);
 	
 	List<TrainingManager> getAllTrainingManagers();
 	
 	TrainingManager updateTrainingManager(String username, TrainingManager newTrainingManager);
+	
+	boolean usernameisunique(TrainingManager trainingManager);
 
 }

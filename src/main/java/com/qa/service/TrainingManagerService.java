@@ -1,10 +1,12 @@
 package com.qa.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qa.constants.Constants;
 import com.qa.persistence.domain.CV;
 import com.qa.persistence.domain.TrainingManager;
 import com.qa.webservices.IConsumer;
@@ -24,16 +26,27 @@ public class TrainingManagerService implements ITrainingManagerService {
 		return (List<CV>) consumer.getListOfCVs();
 	}
 	
-	public TrainingManager createTrainingManager(TrainingManager trainingManager) {
-		// add method giving error if username not unique
+	public String createTrainingManager(TrainingManager trainingManager) {
+		if(usernameisunique(trainingManager)) {
 		producer.createTrainingManager(trainingManager);
-		return trainingManager;
+		return Constants.TRAINING_MANAGER;
+		} else {
+			return Constants.USERNAME_NOT_UNIQUE;
+		}
+	}
+	
+	public boolean usernameisunique(TrainingManager trainingManager) {
+		if(findTrainingManagerByUsername(trainingManager.getUsername()).isPresent()) {
+		return false;
+		} else {
+			return true;
+		}
 	}
 
-	public TrainingManager findTrainingManagerByUsername(String username) {
+	public Optional<TrainingManager> findTrainingManagerByUsername(String username) {
 		producer.askForTrainingManagers();
 		List<TrainingManager> trainingManagers=consumer.getListOfTrainingManagers();
-		return trainingManagers.stream().filter(e->e.getUsername().equals(username)).findFirst().get();
+		return trainingManagers.stream().filter(e->e.getUsername().equals(username)).findFirst();
 	}
 	
 	public List<TrainingManager> getAllTrainingManagers() {
@@ -44,7 +57,7 @@ public class TrainingManagerService implements ITrainingManagerService {
 	public TrainingManager updateTrainingManager(String username, TrainingManager newTrainingManager) {
 		// add method giving error if new username not unique
 		TrainingManager trainingManager = new TrainingManager();
-		trainingManager.setID(findTrainingManagerByUsername(username).getID());		
+		trainingManager.setID(findTrainingManagerByUsername(username).get().getID());		
 		trainingManager.setFirstName(newTrainingManager.getFirstName());
 		trainingManager.setLastName(newTrainingManager.getLastName());
 		trainingManager.setUsername(newTrainingManager.getUsername());
