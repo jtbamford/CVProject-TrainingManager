@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +32,11 @@ public class Endpoint {
 		return service.createTrainingManager(trainingManager);
 	}
 	
+	@GetMapping("${get_training_manager_endpoint}")
+	public TrainingManager findTrainingManagerByUsername(@RequestBody String username) {
+		return service.findTrainingManagerByUsername(username);
+	}
+
 	
 	public void setService(ITrainingManagerService service) {
 		this.service = service;
@@ -39,5 +45,6 @@ public class Endpoint {
 	public ITrainingManagerService getService() {
 		return service;
 	}
+
 
 }

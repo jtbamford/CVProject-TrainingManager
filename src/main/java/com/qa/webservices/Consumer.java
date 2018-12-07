@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.qa.persistence.domain.CV;
+import com.qa.persistence.domain.TrainingManager;
 
 
 @Component
@@ -14,6 +15,8 @@ import com.qa.persistence.domain.CV;
 public class Consumer implements IConsumer {
 	
 	private List<CV> listOfCVs;
+	
+	private List<TrainingManager> listOfTrainingManagers;
 	
 	@JmsListener(destination = "TrainingManagerGetAllCVQueue", containerFactory = "myFactory")
 	public List<CV> recieveCVs(Iterable<CV> CVs) {
@@ -23,8 +26,20 @@ public class Consumer implements IConsumer {
 		return listOfCVs;
 	}
 
+	@JmsListener(destination = "TrainingManagerGetAllCVQueue", containerFactory = "myFactory")
+	public List<TrainingManager> getListOfTrainingManagers(Iterable<TrainingManager> trainingManagers) {
+		for(TrainingManager trainingManager: trainingManagers) {
+			listOfTrainingManagers.add(trainingManager);
+		}
+		return listOfTrainingManagers;
+	}
+	
 	public List<CV> getListOfCVs() {
 		return listOfCVs;
+	}
+
+	public List<TrainingManager> getListOfTrainingManagers() {
+		return listOfTrainingManagers;
 	}
 
 

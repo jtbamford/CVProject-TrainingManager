@@ -11,5 +11,7 @@ public interface ITrainingManagerService {
 	List<CV> getAllCVs();
 
 	TrainingManager createTrainingManager(TrainingManager trainingManager);
+	
+	TrainingManager findTrainingManagerByUsername(String username);
 
 }

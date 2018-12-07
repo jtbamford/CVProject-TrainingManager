@@ -26,5 +26,12 @@ public class Producer implements IProducer {
 		return Constants.QUEUE_MESSAGE;
 	}
 
+	@Override
+	public String askForTrainingManagers() {
+		String get="get";
+		jmsTemplate.convertAndSend("GetTrainingManagerQueue",get);
+		return Constants.QUEUE_MESSAGE;
+	}
+
 
 }

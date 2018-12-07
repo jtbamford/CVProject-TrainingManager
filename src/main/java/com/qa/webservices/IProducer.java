@@ -8,4 +8,6 @@ public interface IProducer {
 	
 	String createTrainingManager(TrainingManager trainingManager);
 
+	String askForTrainingManagers();
+
 }

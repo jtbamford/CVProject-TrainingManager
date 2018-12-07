@@ -29,6 +29,13 @@ public class TrainingManagerService implements ITrainingManagerService {
 		return trainingManager;
 	}
 
+	public TrainingManager findTrainingManagerByUsername(String username) {
+		producer.askForTrainingManagers();
+		List<TrainingManager> trainingManagers=consumer.getListOfTrainingManagers();
+		return trainingManagers.stream().filter(e->e.getUsername().equals(username)).findFirst().get();
+	}
+
+	
 	public void setProducer(IProducer producer) {
 		this.producer = producer;
 	}
@@ -36,6 +43,5 @@ public class TrainingManagerService implements ITrainingManagerService {
 	public void setConsumer(IConsumer consumer) {
 		this.consumer = consumer;
 	}
-
 
 }

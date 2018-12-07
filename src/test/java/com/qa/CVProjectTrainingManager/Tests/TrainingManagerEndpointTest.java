@@ -48,6 +48,11 @@ public class TrainingManagerEndpointTest {
 		Assert.assertEquals(mockTrainingManager, endpoint.createTrainingManager(mockTrainingManager));
 	}
 	
-	
+	@Test
+	public void testFindTrainingManager() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		Mockito.when(service.findTrainingManagerByUsername(mockTrainingManager.getUsername())).thenReturn(mockTrainingManager);
+		Assert.assertEquals(mockTrainingManager, endpoint.findTrainingManagerByUsername(mockTrainingManager.getUsername()));
+	}
 
 }
