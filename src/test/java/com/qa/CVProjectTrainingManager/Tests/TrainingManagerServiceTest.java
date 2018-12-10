@@ -84,12 +84,12 @@ public class TrainingManagerServiceTest {
 	
 	@Test
 	public void testUpdateTrainingManager() {
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
 		TrainingManager mockTrainingManager = new TrainingManager();
+		TrainingManager newTrainingManager = new TrainingManager();
 		mockTrainingManager.setUsername("user");
 		mockTrainingManager.setID(1L);
-		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
 		listTrainingManagers.add(mockTrainingManager);
-		TrainingManager newTrainingManager = new TrainingManager();
 		newTrainingManager.setFirstName("1st");
 		newTrainingManager.setLastName("end");
 		newTrainingManager.setUsername("name");
@@ -103,16 +103,16 @@ public class TrainingManagerServiceTest {
 	
 	@Test
 	public void testUpdateTrainingManagerUsernameNotUnique() {
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
 		TrainingManager mockTrainingManager = new TrainingManager();
 		TrainingManager sameUsernameTrainingManager = new TrainingManager();
+		TrainingManager newTrainingManager = new TrainingManager();
 		mockTrainingManager.setUsername("user");
 		mockTrainingManager.setID(1L);
 		sameUsernameTrainingManager.setUsername("name");
 		sameUsernameTrainingManager.setID(2L);
-		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
 		listTrainingManagers.add(mockTrainingManager);
 		listTrainingManagers.add(sameUsernameTrainingManager);
-		TrainingManager newTrainingManager = new TrainingManager();
 		newTrainingManager.setFirstName("1st");
 		newTrainingManager.setLastName("end");
 		newTrainingManager.setUsername("name");
@@ -127,11 +127,11 @@ public class TrainingManagerServiceTest {
 	
 	@Test
 	public void testCreateTrainingManagerUsernameNotUnique() {
-		TrainingManager newTrainingManager = new TrainingManager();
-		newTrainingManager.setUsername("user");
-		TrainingManager otherTrainingManager = new TrainingManager();
-		otherTrainingManager.setUsername("user");
 		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		TrainingManager newTrainingManager = new TrainingManager();
+		TrainingManager otherTrainingManager = new TrainingManager();
+		newTrainingManager.setUsername("user");
+		otherTrainingManager.setUsername("user");
 		listTrainingManagers.add(otherTrainingManager);
 		Mockito.when(producer.askForTrainingManagers()).thenReturn(Constants.QUEUE_MESSAGE);
 		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
@@ -140,15 +140,15 @@ public class TrainingManagerServiceTest {
 	
 	@Test
 	public void testGenerateUniqueID() {
-		TrainingManager mockTrainingManager = new TrainingManager();
-		mockTrainingManager.setUsername("user");
-		TrainingManager otherTrainingManager = new TrainingManager();
-		otherTrainingManager.setUsername("user2");
 		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
+		TrainingManager mockTrainingManager = new TrainingManager();
+		TrainingManager otherTrainingManager = new TrainingManager();
+		mockTrainingManager.setUsername("user");
+		otherTrainingManager.setUsername("user2");	
 		mockTrainingManager.setID(service.generateUniqueID());
 		Assert.assertEquals(Long.valueOf(1), mockTrainingManager.getID());
 		listTrainingManagers.add(mockTrainingManager);
-		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
 		otherTrainingManager.setID(service.generateUniqueID());
 		Assert.assertEquals(Long.valueOf(2), otherTrainingManager.getID());
 	}
