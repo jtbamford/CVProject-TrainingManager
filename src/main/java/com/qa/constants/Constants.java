@@ -14,4 +14,6 @@ public class Constants {
 	
 	public static final String USERNAME_NOT_UNIQUE = "username not unique";
 	
+	public static final String MANAGER_DELETED = "manager has been deleted";
+	
 }

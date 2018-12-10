@@ -86,6 +86,12 @@ public class TrainingManagerService implements ITrainingManagerService {
 			return trainingManager;
 		}
 	}
+	
+	public String deleteTrainingManager(String username) {
+		producer.deleteTrainingManager(findTrainingManagerByUsername(username));
+		return Constants.MANAGER_DELETED;
+	}
+
 
 	
 	public void setProducer(IProducer producer) {
@@ -95,9 +101,5 @@ public class TrainingManagerService implements ITrainingManagerService {
 	public void setConsumer(IConsumer consumer) {
 		this.consumer = consumer;
 	}
-
-
-
-
 
 }

@@ -1,5 +1,7 @@
 package com.qa.webservices;
 
+import java.util.Optional;
+
 import com.qa.persistence.domain.TrainingManager;
 
 public interface IProducer {
@@ -11,5 +13,7 @@ public interface IProducer {
 	String askForTrainingManagers();
 
 	String sendTrainingManager(TrainingManager trainingManager);
+
+	String deleteTrainingManager(Optional<TrainingManager> manager);
 
 }

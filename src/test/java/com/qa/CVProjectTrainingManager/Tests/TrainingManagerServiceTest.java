@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -150,6 +151,57 @@ public class TrainingManagerServiceTest {
 		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
 		otherTrainingManager.setID(service.generateUniqueID());
 		Assert.assertEquals(Long.valueOf(2), otherTrainingManager.getID());
+	}
+	
+	@Test
+	public void testGenerateUniqueIDWithDeleteLast() {
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
+		TrainingManager mockTrainingManager = new TrainingManager();
+		TrainingManager otherTrainingManager = new TrainingManager();
+		TrainingManager nextTrainingManager = new TrainingManager();
+		mockTrainingManager.setUsername("user");
+		otherTrainingManager.setUsername("user2");
+		nextTrainingManager.setUsername("user3");
+		mockTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(1), mockTrainingManager.getID());
+		listTrainingManagers.add(mockTrainingManager);
+		otherTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(2), otherTrainingManager.getID());
+		listTrainingManagers.remove(otherTrainingManager);
+		nextTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(2), nextTrainingManager.getID());
+	}
+	
+	@Test
+	public void testGenerateUniqueIDWithDeleteFirst() {
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
+		TrainingManager mockTrainingManager = new TrainingManager();
+		TrainingManager otherTrainingManager = new TrainingManager();
+		TrainingManager nextTrainingManager = new TrainingManager();
+		mockTrainingManager.setUsername("user");
+		otherTrainingManager.setUsername("user2");
+		nextTrainingManager.setUsername("user3");
+		mockTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(1), mockTrainingManager.getID());
+		listTrainingManagers.add(mockTrainingManager);
+		otherTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(2), otherTrainingManager.getID());
+		listTrainingManagers.add(otherTrainingManager);
+		listTrainingManagers.remove(mockTrainingManager);
+		nextTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(3), nextTrainingManager.getID());
+	}
+	
+	@Test
+	public void testDeleteTrainingManager() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		mockTrainingManager.setUsername("user");
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		listTrainingManagers.add(mockTrainingManager);
+		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
+		Assert.assertEquals(Constants.MANAGER_DELETED, service.deleteTrainingManager("user"));
 	}
 
 

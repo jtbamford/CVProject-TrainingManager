@@ -23,4 +23,6 @@ public interface ITrainingManagerService {
 	
 	Long generateUniqueID();
 
+	String deleteTrainingManager(String username);
+
 }

@@ -1,5 +1,7 @@
 package com.qa.webservices;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,6 +37,11 @@ public class Producer implements IProducer {
 	public String sendTrainingManager(TrainingManager trainingManager) {
 		jmsTemplate.convertAndSend("UpdateTrainingManagerQueue",trainingManager);
 		return Constants.QUEUE_MESSAGE;
+	}
+
+	public String deleteTrainingManager(Optional<TrainingManager> manager) {
+		jmsTemplate.convertAndSend("DeleteTrainingManagerQueue",manager);
+		return Constants.MANAGER_DELETED;
 	}
 
 
