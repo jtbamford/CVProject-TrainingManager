@@ -1,10 +1,14 @@
 package com.qa.service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.qa.constants.Constants;
 import com.qa.persistence.domain.CV;
@@ -28,13 +32,24 @@ public class TrainingManagerService implements ITrainingManagerService {
 	
 	public String createTrainingManager(TrainingManager trainingManager) {
 		if(usernameisunique(trainingManager)) {
-		producer.createTrainingManager(trainingManager);
+			trainingManager.setID(generateUniqueID());
+			producer.createTrainingManager(trainingManager);
 		return Constants.TRAINING_MANAGER;
 		} else {
 			return Constants.USERNAME_NOT_UNIQUE;
 		}
 	}
 	
+	public Long generateUniqueID() {
+		Long ID;
+		if(getAllTrainingManagers().isEmpty()) {
+			return ID=1L;
+		} else {
+			ID=getAllTrainingManagers().stream().mapToLong(e->e.getID()).max().getAsLong()+1L;
+			return ID;
+		}
+	}
+
 	public boolean usernameisunique(TrainingManager trainingManager) {
 		if(findTrainingManagerByUsername(trainingManager.getUsername()).isPresent()) {
 		return false;

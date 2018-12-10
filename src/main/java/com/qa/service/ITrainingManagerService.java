@@ -20,5 +20,7 @@ public interface ITrainingManagerService {
 	TrainingManager updateTrainingManager(String username, TrainingManager newTrainingManager);
 	
 	boolean usernameisunique(TrainingManager trainingManager);
+	
+	Long generateUniqueID();
 
 }

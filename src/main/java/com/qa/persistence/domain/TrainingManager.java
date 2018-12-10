@@ -51,7 +51,8 @@ public class TrainingManager implements Serializable {
 		return ID;
 	}
 
-	public void setID(Long Id) {
-		ID = Id;
+	public void setID(Long iD) {
+		ID = iD;
 	}
+
 }

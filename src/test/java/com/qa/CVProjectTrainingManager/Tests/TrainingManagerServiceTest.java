@@ -1,5 +1,7 @@
 package com.qa.CVProjectTrainingManager.Tests;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,6 +135,21 @@ public class TrainingManagerServiceTest {
 		Mockito.when(producer.askForTrainingManagers()).thenReturn(Constants.QUEUE_MESSAGE);
 		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
 		Assert.assertEquals(Constants.USERNAME_NOT_UNIQUE, service.createTrainingManager(newTrainingManager));
+	}
+	
+	@Test
+	public void testGenerateUniqueID() {
+		TrainingManager mockTrainingManager = new TrainingManager();
+		mockTrainingManager.setUsername("user");
+		TrainingManager otherTrainingManager = new TrainingManager();
+		otherTrainingManager.setUsername("user2");
+		List<TrainingManager> listTrainingManagers = new ArrayList<TrainingManager>();
+		mockTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(1), mockTrainingManager.getID());
+		listTrainingManagers.add(mockTrainingManager);
+		Mockito.when(consumer.getListOfTrainingManagers()).thenReturn(listTrainingManagers);
+		otherTrainingManager.setID(service.generateUniqueID());
+		Assert.assertEquals(Long.valueOf(2), otherTrainingManager.getID());
 	}
 
 
