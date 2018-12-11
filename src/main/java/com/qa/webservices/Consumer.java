@@ -26,7 +26,7 @@ public class Consumer implements IConsumer {
 		return listOfCVs;
 	}
 
-	@JmsListener(destination = "TrainingManagerGetAllCVQueue", containerFactory = "myFactory")
+	@JmsListener(destination = "TrainingManagerGetAllTMQueue", containerFactory = "myFactory")
 	public List<TrainingManager> getListOfTrainingManagers(Iterable<TrainingManager> trainingManagers) {
 		for(TrainingManager trainingManager: trainingManagers) {
 			listOfTrainingManagers.add(trainingManager);
